@@ -1,8 +1,12 @@
 import React from "react";
+import AuthForm from "./AuthForm";
 const Login = () => {
+  const authFormSubmitHandler = ({ email, password }) => {
+    console.log(email, password);
+  };
   return (
     <div>
-        <h2>Login</h2>
+      <AuthForm type="login" onSubmit={authFormSubmitHandler} />
     </div>
   );
 };

@@ -23,6 +23,10 @@ body {
   flex-grow: 1;
   font-weight: bold;
 }
+.app-name a {
+  text-decoration: none;
+  color: white;
+}
 .menu-items {
   flex-grow: 2;
   display: flex;
@@ -45,4 +49,30 @@ body {
 }
 .menu-items ul li:hover {
   cursor: pointer;
+}
+
+/*
+  -- Main COMPONENT --
+*/
+.Main-Page {
+  display: flex;
+  justify-content: center;
+  font-size: 22px;
+  padding-top: 20px;
+}
+
+/*
+  -- AuthForm COMPONENT --
+*/
+.auth-form {
+  width: 30%;
+  margin: 0 auto;
+}
+.form-control {
+  margin-bottom: 15px;
+}
+.auth-form button {
+  border: none!important;
+  color:black;
+  background-color: #ccc;
 }
