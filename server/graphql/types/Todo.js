@@ -7,7 +7,6 @@ const todoType = new GraphQLObjectType({
     title: { type: GraphQLString },
     description: { type: GraphQLString },
     dueDate: { type: GraphQLInt },
-    user: { type: require('./User') },
     createdDate: { type: GraphQLInt },
   },
 });

@@ -1,14 +1,15 @@
 const graphql = require("graphql");
 const UserType = require("./types/User");
-const { GraphQLObjectType, GraphQLID } = graphql;
-
+const { GraphQLObjectType, GraphQLID, GraphQLNonNull } = graphql;
+const User = require("../mongoose/schemas/User");
 const RootQueryType = new GraphQLObjectType({
   name: "RootQueryType",
   fields: () => ({
     user: {
       type: UserType,
-      resolve(parentValue, args, req) {
-        return {};
+      args: { id: { type: new GraphQLNonNull(GraphQLID) } },
+      resolve(parentValue, {id}) {
+        return User.findById(id);
       }
     }
   })

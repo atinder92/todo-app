@@ -1,9 +1,10 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-  email: String,
-  password: String,
+  name: { type: String, default: "" },
+  email: { type: String, required: true },
+  password: { type: String, required: true },
 });
 
-module.exports = userSchema;
+module.exports = mongoose.model("User", userSchema);
