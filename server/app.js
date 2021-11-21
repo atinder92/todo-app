@@ -7,14 +7,14 @@ const schema = require("./graphql/schema");
 const app = express();
 
 //Set up default mongoose connection
-mongoose.connect(DB_URL, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 
 //Get the default connection
 var db = mongoose.connection;
 
 //log any connection success / errors
-db.on('connected',() => console.log("MongoDB connection successful"));
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.on("connected", () => console.log("MongoDB connection successful"));
+db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 // set up graphql endpoint
 app.use(

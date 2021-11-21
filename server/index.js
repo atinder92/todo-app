@@ -1,19 +1,32 @@
-const { ApolloServer } = require('apollo-server');
+const { ApolloServer } = require("apollo-server-express");
 const mongoose = require("mongoose");
+const { ApolloServerPluginDrainHttpServer } = require('apollo-server-core');
+const express = require("express");
+const http = require('http');
 const { DB_URL } = require("./constants");
-const {typeDefs} = require("./graphql/schema/TypeDefs");
-const {resolvers} = require("./graphql/schema/Resolvers");
-const server = new ApolloServer({ typeDefs, resolvers });
-//Set up default mongoose connection
-mongoose.connect(DB_URL, {useNewUrlParser: true, useUnifiedTopology: true});
+const { typeDefs } = require("./graphql/schema/TypeDefs");
+const { resolvers } = require("./graphql/schema/Resolvers");
 
-//Get the default connection
-var db = mongoose.connection;
+async function startApolloServer(typeDefs, resolvers) {
+  //Set up default mongoose connection
+  mongoose.connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+  //Get the default connection
+  var db = mongoose.connection;
+  //log any connection success / errors
+  db.on("connected", () => console.log("MongoDB connection successful"));
+  db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
-//log any connection success / errors
-db.on('connected',() => console.log("MongoDB connection successful"));
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-// The `listen` method launches a web server.
-server.listen().then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
-});
+  const app = express();
+  const httpServer = http.createServer(app);
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+  });
+
+  await server.start();
+  server.applyMiddleware({ app });
+  await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
+  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
+}
+startApolloServer(typeDefs, resolvers);
