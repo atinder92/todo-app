@@ -1,5 +1,6 @@
 const { ApolloServer } = require("apollo-server-express");
 const mongoose = require("mongoose");
+const expressJwt = require("express-jwt");
 const { ApolloServerPluginDrainHttpServer } = require('apollo-server-core');
 const express = require("express");
 const http = require('http');
@@ -17,11 +18,21 @@ async function startApolloServer(typeDefs, resolvers) {
   db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
   const app = express();
+  app.use(expressJwt({
+    secret: "some_secret",
+    algorithms: ["HS256"],
+    credentialsRequired: false
+  }));
+
   const httpServer = http.createServer(app);
   const server = new ApolloServer({
     typeDefs,
     resolvers,
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+    context: ({req}) => {
+      const user = req.user || null;
+      return {user};
+    }
   });
 
   await server.start();

@@ -14,7 +14,12 @@ const typeDefs = gql`
     dueDate: Date!
     createdDate: Date!
   }
-  
+  type AuthData {
+    userId: ID!
+    token: String!
+    tokenExpiration: Int!
+  }
+
   # Querys
   type Query {
     getUsers: [User]
@@ -27,7 +32,7 @@ const typeDefs = gql`
     updateTodo(id: ID!): Todo
     deleteTodo(id: ID!): Todo
     signup(email: String!, password: String!): User
-    login(email: String!, password: String!): User
+    login(email: String!, password: String!): AuthData
   }
 `;
 module.exports = { typeDefs };
