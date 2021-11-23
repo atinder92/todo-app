@@ -31,7 +31,7 @@ async function startApolloServer(typeDefs, resolvers) {
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
     context: ({req}) => {
       const user = req.user || null;
-      return {user};
+      return user;
     }
   });
 

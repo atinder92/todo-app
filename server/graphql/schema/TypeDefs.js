@@ -31,7 +31,7 @@ const typeDefs = gql`
     createTodo(title: String!, description: String!, createdBy: ID!): Todo
     updateTodo(id: ID!): Todo
     deleteTodo(id: ID!): Todo
-    signup(email: String!, password: String!): User
+    signup(email: String!, password: String!): AuthData
     login(email: String!, password: String!): AuthData
   }
 `;
