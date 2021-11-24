@@ -23,10 +23,7 @@ async function startApolloServer(typeDefs, resolvers) {
   app.use(expressJwt({
     secret: "some_secret",
     algorithms: ["HS256"],
-    credentialsRequired: false,
-    getToken: (req) => {
-      return req.headers.authorization;
-    }
+    credentialsRequired: false
   }));
 
   const httpServer = http.createServer(app);

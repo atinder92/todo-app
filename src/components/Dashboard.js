@@ -1,6 +1,17 @@
 import React from "react";
+import query from "../queries/CurrentUser";
+import { useQuery } from "@apollo/client";
 const Dashboard = () => {
-  return <div><h2>Dashboard Component</h2></div>;
+  const { data, loading, error } = useQuery(query);
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error...</div>;
+  return (
+    <div>
+      <p>
+        <b>Hello User: {data.currentUser.email}</b>
+      </p>
+    </div>
+  );
 };
 
 export default Dashboard;

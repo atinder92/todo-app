@@ -5,6 +5,7 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Main from "./components/Main";
 import Dashboard from "./components/Dashboard";
+import requireAuth from "./components/requireAuth";
 
 function App() {
   return (
@@ -13,9 +14,9 @@ function App() {
       <Container>
         <Switch>
           <Route path="/" exact component={Main} />
-          <Route path="/login" component={Login} />
-          <Route path="/signup" component={Signup} />
-          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/login" component={Login}/>
+          <Route path="/signup" component={Signup}/>
+          <Route path="/dashboard" component={requireAuth(Dashboard)} />
         </Switch>
       </Container>
     </Container>
