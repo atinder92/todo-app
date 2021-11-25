@@ -14,21 +14,26 @@ const Header = () => {
       <div className="menu-items">
         <ul>
           {data.currentUser ? (
-            <React.Fragment>
+            <>
               <li>
                 <Link to="/dashboard">Dashboard</Link>
               </li>
-              <li><Link to="/logout">Logout</Link></li>
-            </React.Fragment>
+              <li>
+                <Link to="/account">Account</Link>
+              </li>
+              <li>
+                <Link to="/logout">Logout</Link>
+              </li>
+            </>
           ) : (
-            <React.Fragment>
+            <>
               <li>
                 <Link to="/signup">Sign up</Link>
               </li>
               <li>
                 <Link to="/login">Login</Link>
               </li>
-            </React.Fragment>
+            </>
           )}
         </ul>
       </div>

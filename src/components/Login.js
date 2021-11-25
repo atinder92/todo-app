@@ -1,21 +1,24 @@
 import React from "react";
-import { useMutation } from "@apollo/client";
-import { useHistory } from "react-router-dom";
+import { useMutation, useQuery } from "@apollo/client";
+import { Redirect } from "react-router-dom";
 import LOGIN from "../mutations/Login";
+import query from "../queries/CurrentUser";
 import AuthForm from "./AuthForm";
 const Login = () => {
-  const history = useHistory();
+  const { data, loading, refetch } = useQuery(query);
   const [login] = useMutation(LOGIN);
+  if (data && data.currentUser) {
+    return <Redirect to="/dashboard" />;
+  }
+  if (loading) return <div>Loading..</div>;
   const authFormSubmitHandler = ({ email, password }) => {
     login({
       variables: { email, password },
       onCompleted: (data) => {
         const token = data.login.token;
         localStorage.setItem("todo_token", token);
-        history.push("/dashboard");
+        refetch();
       },
-    }).catch((err) => {
-      console.log(err);
     });
   };
   return (
