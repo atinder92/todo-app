@@ -33,7 +33,7 @@ const mutation = new GraphQLObjectType({
       args: {
         title: { type: GraphQLString },
         description: { type: GraphQLString },
-        createdBy: { type: GraphQLID },
+        createdBy: { type: GraphQLID }
       },
       resolve(parentValue, { title, description, createdBy }) {
         return new Todo({ title, description, createdBy }).save();

@@ -1,15 +1,29 @@
 import React from "react";
 import query from "../queries/CurrentUser";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
+import CREATE_TODO from "../mutations/CreateTodo";
+import TodoManageForm from "./TodoManageForm";
+
 const Dashboard = () => {
-  const { data, loading, error } = useQuery(query);
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error...</div>;
+  const {
+    data: uData,
+    loading: loadingCurrentUser,
+    error: currentUserError,
+  } = useQuery(query);
+  const [createTodo] = useMutation(CREATE_TODO);
+  if (loadingCurrentUser) return <div>Loading...</div>;
+  if (currentUserError) return <div>Error...</div>;
+  const formSubmitHandler = ({title, description}) => {
+    console.log(title,description,uData.currentUser.id);
+    createTodo({variables: {
+      title,
+      description,
+      createdBy: uData.currentUser.id
+    }, refetchQueries: [{query}]})
+  }
   return (
     <div>
-      <p>
-        <b>Hello User: {data.currentUser.email}</b>
-      </p>
+      <TodoManageForm onSubmit={formSubmitHandler}/>
     </div>
   );
 };

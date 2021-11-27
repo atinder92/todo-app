@@ -76,3 +76,24 @@ body {
   color:black;
   background-color: #ccc;
 }
+
+/*
+  -- TodoManageForm COMPONENT
+*/
+.todo-manage-form {
+  width: 40%;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+.todo-manage-form .form-control {
+  margin-bottom: 20px;
+}
+.todo-manage-form .form-control input{
+  font-size: 14px;
+  padding: 10px;
+}
+.todo-manage-form button {
+  border: none!important;
+  color:black;
+  background-color: #ccc;
+}
