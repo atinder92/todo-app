@@ -28,7 +28,7 @@ const typeDefs = gql`
 
   # Mutations
   type Mutation {
-    createTodo(title: String!, description: String!, createdBy: ID!): Todo
+    createTodo(title: String!, description: String!, createdBy: ID!, dueDate: String!): Todo
     updateTodo(id: ID!): Todo
     deleteTodo(id: ID!): Todo
     signup(email: String!, password: String!): AuthData

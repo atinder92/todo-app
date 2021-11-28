@@ -7,6 +7,9 @@ const currentUser = gql`
       email
       todos {
         title
+        description
+        dueDate
+        createdDate
       }
     }
   }

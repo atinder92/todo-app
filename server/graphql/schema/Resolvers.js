@@ -38,8 +38,9 @@ const resolvers = {
       const token = createToken(user);
       return { userId: user.id, token, tokenExpiration: 1 };
     },
-    createTodo(parentVal, { title, description, createdBy }) {
-      return new Todo({ title, description, createdBy }).save();
+    createTodo(parentVal, { title, description, createdBy, dueDate }) {
+      dueDate = new Date(dueDate);
+      return new Todo({ title, description, createdBy, dueDate }).save();
     },
   },
 };

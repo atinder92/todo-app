@@ -13,12 +13,13 @@ const Dashboard = () => {
   const [createTodo] = useMutation(CREATE_TODO);
   if (loadingCurrentUser) return <div>Loading...</div>;
   if (currentUserError) return <div>Error...</div>;
-  const formSubmitHandler = ({title, description}) => {
-    console.log(title,description,uData.currentUser.id);
+  const formSubmitHandler = ({title, description, dueDate}) => {
+    dueDate = new Date(dueDate);
     createTodo({variables: {
       title,
       description,
-      createdBy: uData.currentUser.id
+      createdBy: uData.currentUser.id,
+      dueDate
     }, refetchQueries: [{query}]})
   }
   return (
