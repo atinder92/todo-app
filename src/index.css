@@ -81,8 +81,6 @@ body {
   -- TodoManageForm COMPONENT
 */
 .todo-manage-form {
-  width: 40%;
-  margin: 0 auto;
   padding-top: 20px;
 }
 .todo-manage-form .form-control {
@@ -96,4 +94,22 @@ body {
   border: none!important;
   color:black;
   background-color: #ccc;
+}
+
+/*
+  -- Dashboard COMPONENT
+*/
+.dashboard-container {
+  width: 40%;
+  margin: 0 auto;
+}
+
+/*
+  -- TodoList COMPONENT
+*/
+.todo-list-container {
+  margin-top: 25px;
+}
+.todo-list-container ul li {
+  border-bottom: 1px solid #ccc;
 }

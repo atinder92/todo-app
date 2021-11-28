@@ -3,6 +3,7 @@ import query from "../queries/CurrentUser";
 import { useQuery, useMutation } from "@apollo/client";
 import CREATE_TODO from "../mutations/CreateTodo";
 import TodoManageForm from "./TodoManageForm";
+import TodoList from "./TodoList";
 
 const Dashboard = () => {
   const {
@@ -13,18 +14,22 @@ const Dashboard = () => {
   const [createTodo] = useMutation(CREATE_TODO);
   if (loadingCurrentUser) return <div>Loading...</div>;
   if (currentUserError) return <div>Error...</div>;
-  const formSubmitHandler = ({title, description, dueDate}) => {
+  const formSubmitHandler = ({ title, description, dueDate }) => {
     dueDate = new Date(dueDate);
-    createTodo({variables: {
-      title,
-      description,
-      createdBy: uData.currentUser.id,
-      dueDate
-    }, refetchQueries: [{query}]})
-  }
+    createTodo({
+      variables: {
+        title,
+        description,
+        createdBy: uData.currentUser.id,
+        dueDate,
+      },
+      refetchQueries: [{ query }],
+    });
+  };
   return (
-    <div>
-      <TodoManageForm onSubmit={formSubmitHandler}/>
+    <div className="dashboard-container">
+      <TodoManageForm onSubmit={formSubmitHandler} />
+      <TodoList todos={uData.currentUser.todos}/>
     </div>
   );
 };
