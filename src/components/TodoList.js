@@ -1,24 +1,17 @@
 import React from "react";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import EventIcon from "@mui/icons-material/Event";
-
+import { Event as EventIcon } from "@mui/icons-material";
+import TodoListItem from "./TodoListItem";
 const TodoList = (props) => {
   return (
     <div className="todo-list-container">
       <h2>
         <EventIcon /> What's upcoming
       </h2>
-      <List>
+      <>
         {props.todos.map((todo) => {
-          return (
-            <ListItem>
-              <ListItemText primary={todo.title} secondary={todo.description}></ListItemText>
-            </ListItem>
-          );
+          return <TodoListItem todo={todo} key={todo._id}/>;
         })}
-      </List>
+      </>
     </div>
   );
 };

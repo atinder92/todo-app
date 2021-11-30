@@ -100,7 +100,7 @@ body {
   -- Dashboard COMPONENT
 */
 .dashboard-container {
-  width: 40%;
+  width: 60%;
   margin: 0 auto;
 }
 
@@ -108,8 +108,47 @@ body {
   -- TodoList COMPONENT
 */
 .todo-list-container {
-  margin-top: 25px;
+  padding-bottom: 60px;
 }
-.todo-list-container ul li {
+
+/*
+  -- TodoList COMPONENT
+*/
+.todo-list-item {
+  margin-top: 25px;
+  padding: 10px 10px 10px 0px;
   border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+}
+.todo-list-item-title {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+.todo-list-item-description {
+  font-size: 14px;
+  margin-bottom: 5px;
+  /* white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; */
+}
+.todo-list-item-text-container {
+  flex-grow: 2;
+}
+.todo-list-item:hover {
+  background-color: #e6e6e6;
+}
+.todo-list-item-edit-button {
+  cursor: pointer;
+}
+.list-item-edit-menu {
+  display: block;
+}
+
+/*
+Material Components style override
+*/
+h2.MuiDialogTitle-root{
+  font-size: 16px;
 }

@@ -9,6 +9,7 @@ const typeDefs = gql`
     todos: [Todo!]
   }
   type Todo {
+    _id: ID!
     title: String!
     description: String
     dueDate: Date!

@@ -10,6 +10,7 @@ const currentUser = gql`
         description
         dueDate
         createdDate
+        _id
       }
     }
   }
