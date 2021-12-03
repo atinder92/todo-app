@@ -20,6 +20,9 @@ const typeDefs = gql`
     token: String!
     tokenExpiration: Int!
   }
+  type DeleteTodo {
+    id: ID!
+  }
 
   # Querys
   type Query {
@@ -31,7 +34,7 @@ const typeDefs = gql`
   type Mutation {
     createTodo(title: String!, description: String!, createdBy: ID!, dueDate: String!): Todo
     updateTodo(id: ID!): Todo
-    deleteTodo(id: ID!): Todo
+    deleteTodo(id: ID!): DeleteTodo
     signup(email: String!, password: String!): AuthData
     login(email: String!, password: String!): AuthData
   }

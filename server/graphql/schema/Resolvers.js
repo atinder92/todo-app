@@ -42,6 +42,10 @@ const resolvers = {
       dueDate = new Date(dueDate);
       return new Todo({ title, description, createdBy, dueDate }).save();
     },
+    async deleteTodo(parentVal, {id}) {
+      await Todo.deleteOne({_id:id}); 
+      return {id};
+    }
   },
 };
 

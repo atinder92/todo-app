@@ -3,12 +3,6 @@ import { Edit, Delete } from "@mui/icons-material";
 import DeleteTodoDialog from "./DeleteTodoDialog";
 const TodoListItem = ({ todo }) => {
   const [displayDeleteDialog, setDisplayDeleteDialog] = useState(false);
-
-  const deleteItemHandler = (id) => {
-    console.log("Deleting todo with id " + id);
-    setDisplayDeleteDialog(false);
-  };
-
   return (
     <div className="todo-list-item">
       <div className="todo-list-item-text-container">
@@ -26,7 +20,7 @@ const TodoListItem = ({ todo }) => {
       </div>
       <DeleteTodoDialog
         open={displayDeleteDialog}
-        handleDelete={() => deleteItemHandler(todo._id)}
+        todoId = {todo._id}
         handleClose={() => setDisplayDeleteDialog(false)}
       />
     </div>
