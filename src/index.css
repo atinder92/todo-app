@@ -129,9 +129,6 @@ body {
 .todo-list-item-description {
   font-size: 14px;
   margin-bottom: 5px;
-  /* white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis; */
 }
 .todo-list-item-text-container {
   flex-grow: 2;
@@ -141,6 +138,9 @@ body {
 }
 .todo-list-item-edit-button {
   cursor: pointer;
+}
+.todo-list-item-edit-button a {
+  color: black;
 }
 .list-item-edit-menu {
   display: block;

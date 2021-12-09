@@ -7,6 +7,7 @@ import Main from "./components/Main";
 import Dashboard from "./components/Dashboard";
 import AccountSettings from "./components/Account";
 import requireAuth from "./components/requireAuth";
+import EditTodo from "./components/EditTodo";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
           <Route path="/dashboard" component={requireAuth(Dashboard)} />
+          <Route path="/edit/:id" component={requireAuth(EditTodo)} />
           <Route path="/account" component={requireAuth(AccountSettings)} />
         </Switch>
       </Container>

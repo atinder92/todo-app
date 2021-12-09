@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Edit, Delete } from "@mui/icons-material";
 import DeleteTodoDialog from "./DeleteTodoDialog";
 const TodoListItem = ({ todo }) => {
@@ -10,7 +11,9 @@ const TodoListItem = ({ todo }) => {
         <div className="todo-list-item-description">{todo.description}</div>
       </div>
       <div className="todo-list-item-edit-button">
-        <Edit />
+        <Link to={`/edit/${todo._id}`}>
+          <Edit />
+        </Link>
       </div>
       <div
         className="todo-list-item-edit-button"
@@ -20,7 +23,7 @@ const TodoListItem = ({ todo }) => {
       </div>
       <DeleteTodoDialog
         open={displayDeleteDialog}
-        todoId = {todo._id}
+        todoId={todo._id}
         handleClose={() => setDisplayDeleteDialog(false)}
       />
     </div>
