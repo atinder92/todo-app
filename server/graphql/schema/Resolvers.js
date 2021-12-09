@@ -10,11 +10,11 @@ const resolvers = {
       const users = await User.find({});
       return users;
     },
-    async currentUser(_,args,{userId}) {
-      if(!userId) return null;
+    async currentUser(_, args, { userId }) {
+      if (!userId) return null;
       const currentUser = await User.findById(userId);
       return currentUser;
-    }
+    },
   },
   User: {
     async todos(parentVal) {
@@ -38,14 +38,28 @@ const resolvers = {
       const token = createToken(user);
       return { userId: user.id, token, tokenExpiration: 1 };
     },
-    createTodo(parentVal, { title, description, createdBy, dueDate }) {
+    async createTodo(parentVal, { title, description, createdBy, dueDate }) {
       dueDate = new Date(dueDate);
-      return new Todo({ title, description, createdBy, dueDate }).save();
+      try {
+        const todo = await new Todo({
+          title,
+          description,
+          createdBy,
+          dueDate,
+        }).save();
+        return todo;
+      } catch (err) {
+        const errors = {
+          title: err.errors["title"].message,
+          description: err.errors["description"].message,
+        };
+        throw new Error(JSON.stringify(errors));
+      }
     },
-    async deleteTodo(parentVal, {id}) {
-      await Todo.deleteOne({_id:id}); 
-      return {id};
-    }
+    async deleteTodo(parentVal, { id }) {
+      await Todo.deleteOne({ _id: id });
+      return { id };
+    },
   },
 };
 

@@ -82,6 +82,7 @@ body {
 */
 .todo-manage-form {
   padding-top: 20px;
+  margin-bottom: 15px;
 }
 .todo-manage-form .form-control {
   margin-bottom: 30px;
