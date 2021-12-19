@@ -56,6 +56,22 @@ const resolvers = {
         throw new Error(JSON.stringify(errors));
       }
     },
+    async updateTodo(parentVal, { id, title, description, dueDate }) {
+      dueDate = new Date(dueDate);
+      try {
+        const todo = await Todo.updateOne(
+          { _id: id },
+          { $set: { title, description, dueDate } }
+        );
+        return Todo.findById(id);;
+      } catch (err) {
+        const errors = {
+          title: err.errors["title"].message,
+          description: err.errors["description"].message,
+        };
+        throw new Error(JSON.stringify(errors));
+      }
+    },
     async deleteTodo(parentVal, { id }) {
       await Todo.deleteOne({ _id: id });
       return { id };

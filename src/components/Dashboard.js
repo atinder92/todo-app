@@ -13,7 +13,7 @@ const Dashboard = () => {
     loading: loadingCurrentUser,
     error: currentUserError,
   } = useQuery(query);
-  const [createTodo, { error }] = useMutation(CREATE_TODO);
+  const [createTodo] = useMutation(CREATE_TODO);
   if (loadingCurrentUser) return <div>Loading...</div>;
   if (currentUserError) return <div>Error...</div>;
   const formSubmitHandler = ({ title, description, dueDate }) => {
