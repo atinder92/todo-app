@@ -1,5 +1,5 @@
 const bcrypt = require("bcryptjs");
-const { createToken } = require("../../utils");
+const { createToken, buildErrorObject } = require("../../utils");
 const { dateScalar } = require("../scalars/date");
 const Todo = require("../../mongoose/schemas/Todo");
 const User = require("../../mongoose/schemas/User");
@@ -49,27 +49,20 @@ const resolvers = {
         }).save();
         return todo;
       } catch (err) {
-        const errors = {
-          title: err.errors["title"].message,
-          description: err.errors["description"].message,
-        };
-        throw new Error(JSON.stringify(errors));
+        throw new Error(JSON.stringify(buildErrorObject(err)));
       }
     },
     async updateTodo(parentVal, { id, title, description, dueDate }) {
       dueDate = new Date(dueDate);
       try {
-        const todo = await Todo.updateOne(
+        await Todo.updateOne(
           { _id: id },
-          { $set: { title, description, dueDate } }
+          { $set: { title, description, dueDate }},
+          { runValidators:true} 
         );
         return Todo.findById(id);;
       } catch (err) {
-        const errors = {
-          title: err.errors["title"].message,
-          description: err.errors["description"].message,
-        };
-        throw new Error(JSON.stringify(errors));
+        throw new Error(JSON.stringify(buildErrorObject(err)));
       }
     },
     async deleteTodo(parentVal, { id }) {
