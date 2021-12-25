@@ -15,7 +15,7 @@ function App() {
       <Header />
       <Container>
         <Switch>
-          <Route path="/" exact component={Main} />
+          <Route path="/" exact component={requireAuth(Dashboard)} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
           <Route path="/dashboard" component={requireAuth(Dashboard)} />

@@ -23,7 +23,7 @@ body {
   flex-grow: 1;
   font-weight: bold;
 }
-.app-name a {
+.app-name a, .app-name button {
   text-decoration: none;
   color: white;
 }
@@ -38,8 +38,9 @@ body {
 .menu-items ul li {
   display: inline;
 }
-.menu-items ul li a {
+.menu-items ul li a, .menu-items ul li button {
   text-decoration: none;
+  border: none;
   color: #34495e;
   padding: 8px;
   background-color: #fff;

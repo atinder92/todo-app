@@ -2,8 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import query from "../queries/CurrentUser";
 import { useQuery } from "@apollo/client";
+import { useHistory } from "react-router-dom";
+import { useApolloClient } from "@apollo/client";
 
 const Header = () => {
+  const history = useHistory();
+  const client = useApolloClient();
   const { data, loading } = useQuery(query);
   if (loading) return <div></div>;
   return (
@@ -16,13 +20,21 @@ const Header = () => {
           {data.currentUser ? (
             <>
               <li>
-                <Link to="/dashboard">Dashboard</Link>
+                <Link to="/">Dashboard</Link>
               </li>
               <li>
                 <Link to="/account">Account</Link>
               </li>
               <li>
-                <Link to="/logout">Logout</Link>
+                <button
+                  onClick={() => {
+                    client.resetStore();
+                    localStorage.removeItem("todo_token");
+                    history.push("/login");
+                  }}
+                >
+                  Logout
+                </button>
               </li>
             </>
           ) : (
