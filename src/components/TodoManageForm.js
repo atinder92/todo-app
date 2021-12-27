@@ -26,9 +26,12 @@ const TodoManageForm = (props) => {
         <div className="form-control">
           <TextField
             id="title"
+            error={props.error.title !== undefined}
+            helperText={props.error.title}
             autoComplete="off"
             label="Title"
             value={title}
+            size="small"
             fullWidth
             variant="outlined"
             onClick={props.resetError}
@@ -40,10 +43,13 @@ const TodoManageForm = (props) => {
         <div className="form-control">
           <TextField
             id="description"
+            error={props.error.description !== undefined}
+            helperText={props.error.description}
             autoComplete="off"
             label="Description"
             onClick={props.resetError}
             value={description}
+            size="small"
             fullWidth
             multiline
             rows={5}

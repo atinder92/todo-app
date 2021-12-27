@@ -4,7 +4,6 @@ import mutation from "../mutations/EditTodo";
 import TodoManageForm from "./TodoManageForm";
 import { useQuery, useMutation } from "@apollo/client";
 import { useParams, useHistory } from "react-router-dom";
-import { Alert } from "@mui/material";
 
 const EditTodo = () => {
   const [editTodoError, setEditTodoError] = useState({});
@@ -43,12 +42,10 @@ const EditTodo = () => {
         title={currentTodo.title}
         description={currentTodo.description}
         dueDate={currentTodo.dueDate}
+        error={editTodoError}
         resetError={resetErrorHandler}
         onSubmit={editTodoHandler}
       />
-      {Object.keys(editTodoError).length > 0 && (
-        <Alert severity="error">Please enter title and description</Alert>
-      )}
     </div>
   );
 };

@@ -4,7 +4,6 @@ import { useQuery, useMutation } from "@apollo/client";
 import CREATE_TODO from "../mutations/CreateTodo";
 import TodoManageForm from "./TodoManageForm";
 import TodoList from "./TodoList";
-import { Alert } from "@mui/material";
 
 const Dashboard = () => {
   const [createTodoError, setCreateTodoError] = useState({});
@@ -40,10 +39,8 @@ const Dashboard = () => {
       <TodoManageForm
         onSubmit={formSubmitHandler}
         resetError={resetErrorHandler}
+        error={createTodoError}
       />
-      {Object.keys(createTodoError).length > 0 && (
-        <Alert severity="error">Please enter title and description</Alert>
-      )}
       <TodoList todos={uData.currentUser.todos} />
     </div>
   );
