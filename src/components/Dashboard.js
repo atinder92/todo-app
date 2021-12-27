@@ -32,9 +32,15 @@ const Dashboard = () => {
       },
     });
   };
+  const resetErrorHandler = () => {
+    setCreateTodoError({});
+  };
   return (
     <div className="dashboard-container">
-      <TodoManageForm onSubmit={formSubmitHandler} />
+      <TodoManageForm
+        onSubmit={formSubmitHandler}
+        resetError={resetErrorHandler}
+      />
       {Object.keys(createTodoError).length > 0 && (
         <Alert severity="error">Please enter title and description</Alert>
       )}

@@ -123,6 +123,13 @@ body {
   display: flex;
   align-items: center;
 }
+.todo-list-item-date-container {
+  font-weight: bold;
+  font-size: 12px;
+  padding: 12px;
+  background-color: #e6e6e6;
+  margin-right: 10px;
+}
 .todo-list-item-title {
   font-weight: bold;
   font-size: 18px;
@@ -134,9 +141,6 @@ body {
 }
 .todo-list-item-text-container {
   flex-grow: 2;
-}
-.todo-list-item:hover {
-  background-color: #e6e6e6;
 }
 .todo-list-item-edit-button {
   cursor: pointer;

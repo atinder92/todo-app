@@ -32,6 +32,9 @@ const EditTodo = () => {
       },
     });
   };
+  const resetErrorHandler = () => {
+    setEditTodoError({});
+  };
   return (
     <div>
       <TodoManageForm
@@ -40,6 +43,7 @@ const EditTodo = () => {
         title={currentTodo.title}
         description={currentTodo.description}
         dueDate={currentTodo.dueDate}
+        resetError={resetErrorHandler}
         onSubmit={editTodoHandler}
       />
       {Object.keys(editTodoError).length > 0 && (

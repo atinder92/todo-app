@@ -31,6 +31,7 @@ const TodoManageForm = (props) => {
             value={title}
             fullWidth
             variant="outlined"
+            onClick={props.resetError}
             onChange={(e) => {
               setTitle(e.target.value);
             }}
@@ -41,6 +42,7 @@ const TodoManageForm = (props) => {
             id="description"
             autoComplete="off"
             label="Description"
+            onClick={props.resetError}
             value={description}
             fullWidth
             multiline
