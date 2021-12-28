@@ -1,5 +1,5 @@
 const bcrypt = require("bcryptjs");
-const { createToken, buildErrorObject } = require("../../utils");
+const { createToken, buildErrorObject, buildErrorObjectUser } = require("../../utils");
 const { dateScalar } = require("../scalars/date");
 const Todo = require("../../mongoose/schemas/Todo");
 const User = require("../../mongoose/schemas/User");
@@ -26,9 +26,14 @@ const resolvers = {
     async signup(_, { email, password }) {
       var salt = bcrypt.genSaltSync(10);
       var hashedPassword = bcrypt.hashSync(password, salt);
-      const user = await new User({ email, password: hashedPassword }).save();
-      const token = createToken(user);
-      return { userId: user.id, token, tokenExpiration: 1 };
+      if(password === "") hashedPassword = "";
+      try {
+        const user = await new User({ email, password: hashedPassword }).save();
+        const token = createToken(user);
+        return { userId: user.id, token, tokenExpiration: 1 };
+      } catch (err) {
+        throw new Error(JSON.stringify(buildErrorObjectUser(err)));
+      }
     },
     async login(_, { email, password }) {
       const user = await User.findOne({ email });
@@ -57,10 +62,10 @@ const resolvers = {
       try {
         await Todo.updateOne(
           { _id: id },
-          { $set: { title, description, dueDate }},
-          { runValidators:true} 
+          { $set: { title, description, dueDate } },
+          { runValidators: true }
         );
-        return Todo.findById(id);;
+        return Todo.findById(id);
       } catch (err) {
         throw new Error(JSON.stringify(buildErrorObject(err)));
       }

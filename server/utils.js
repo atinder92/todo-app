@@ -18,7 +18,19 @@ const buildErrorObject = (err) => {
   return errors;
 }
 
+const buildErrorObjectUser = (err) => {
+  const errors = {};
+  if(err.errors["email"]) {
+    errors["email"] = err.errors["email"].message;
+  }
+  if(err.errors["password"]) {
+    errors["password"] = err.errors["password"].message
+  }
+  return errors;
+}
+
 module.exports = {
   createToken,
-  buildErrorObject
+  buildErrorObject,
+  buildErrorObjectUser
 };

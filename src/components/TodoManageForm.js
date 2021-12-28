@@ -67,6 +67,7 @@ const TodoManageForm = (props) => {
             onChange={(newValue) => {
               setDueDate(newValue);
             }}
+            minDate={new Date()}
             renderInput={(params) => <TextField {...params} />}
           />
         </div>

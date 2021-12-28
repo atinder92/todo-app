@@ -14,6 +14,8 @@ const AuthForm = (props) => {
         <div className="form-control">
           <TextField
             id="email"
+            error={props.error.email !== undefined}
+            helperText={props.error.email}
             autoComplete="off"
             label="Email"
             value={email}
@@ -28,6 +30,8 @@ const AuthForm = (props) => {
           <TextField
             autoComplete="off"
             id="password"
+            error={props.error.password !== undefined}
+            helperText={props.error.password}
             value={password}
             label="Password"
             fullWidth
