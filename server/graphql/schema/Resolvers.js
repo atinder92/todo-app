@@ -3,6 +3,7 @@ const {
   createToken,
   buildErrorObject,
   buildErrorObjectUser,
+  checkEmailAndPasswordForLogin
 } = require("../../utils");
 const { dateScalar } = require("../scalars/date");
 const Todo = require("../../mongoose/schemas/Todo");
@@ -40,14 +41,19 @@ const resolvers = {
       }
     },
     async login(_, { email, password }) {
-      const user = await User.findOne({ email });
-      if (!user) return null;
-      const isValid = await bcrypt.compare(password, user.password);
-      if (!isValid) return null;
-      const token = createToken(user);
-      return { userId: user.id, token, tokenExpiration: 1 };
+      try {
+        checkEmailAndPasswordForLogin(email,password);
+        const user = await User.findOne({ email });
+        if (!user) return null;
+        const isValid = await bcrypt.compare(password, user.password);
+        if (!isValid) return null;
+        const token = createToken(user);
+        return { userId: user.id, token, tokenExpiration: 1 };
+      } catch (err) {
+        throw new Error(JSON.stringify(err));
+      }
     },
-    async createTodo(parentVal, { title, description, createdBy, dueDate }) {
+    async createTodo(_, { title, description, createdBy, dueDate }) {
       dueDate = new Date(dueDate);
       try {
         const todo = await new Todo({
@@ -61,7 +67,7 @@ const resolvers = {
         throw new Error(JSON.stringify(buildErrorObject(err)));
       }
     },
-    async updateTodo(parentVal, { id, title, description, dueDate }) {
+    async updateTodo(_, { id, title, description, dueDate }) {
       dueDate = new Date(dueDate);
       try {
         await Todo.updateOne(
@@ -74,7 +80,7 @@ const resolvers = {
         throw new Error(JSON.stringify(buildErrorObject(err)));
       }
     },
-    async deleteTodo(parentVal, { id }) {
+    async deleteTodo(_, { id }) {
       await Todo.deleteOne({ _id: id });
       return { id };
     },

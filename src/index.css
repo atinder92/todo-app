@@ -105,7 +105,11 @@ body {
   width: 60%;
   margin: 0 auto;
 }
-
+.invalid-login-error {
+  width: 28%;
+  margin: 0 auto;
+  margin-top: 15px;
+}
 /*
   -- TodoList COMPONENT
 */
