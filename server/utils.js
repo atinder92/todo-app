@@ -20,10 +20,13 @@ const buildErrorObject = (err) => {
 
 const buildErrorObjectUser = (err) => {
   const errors = {};
-  if(err.errors["email"]) {
+  if(err.code == 11000 && err.keyPattern.email) {
+    errors["email"] = "Email already registered";
+  }
+  if(err.errors && err.errors["email"]) {
     errors["email"] = err.errors["email"].message;
   }
-  if(err.errors["password"]) {
+  if(err.errors && err.errors["password"]) {
     errors["password"] = err.errors["password"].message
   }
   return errors;

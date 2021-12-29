@@ -21,6 +21,7 @@ const AuthForm = (props) => {
             value={email}
             fullWidth
             variant="outlined"
+            onClick={props.resetError}
             onChange={(e) => {
               setEmail(e.target.value);
             }}
@@ -36,6 +37,7 @@ const AuthForm = (props) => {
             label="Password"
             fullWidth
             variant="outlined"
+            onClick={props.resetError}
             type="password"
             onChange={(e) => {
               setPassword(e.target.value);

@@ -26,7 +26,7 @@ const Signup = () => {
   };
   return (
     <div>
-      <AuthForm type="signup" onSubmit={authFormSubmitHandler} error={signUpError}/>
+      <AuthForm type="signup" onSubmit={authFormSubmitHandler} resetError={() => setSignUpError({})} error={signUpError}/>
     </div>
   );
 };

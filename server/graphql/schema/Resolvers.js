@@ -1,5 +1,9 @@
 const bcrypt = require("bcryptjs");
-const { createToken, buildErrorObject, buildErrorObjectUser } = require("../../utils");
+const {
+  createToken,
+  buildErrorObject,
+  buildErrorObjectUser,
+} = require("../../utils");
 const { dateScalar } = require("../scalars/date");
 const Todo = require("../../mongoose/schemas/Todo");
 const User = require("../../mongoose/schemas/User");
@@ -26,7 +30,7 @@ const resolvers = {
     async signup(_, { email, password }) {
       var salt = bcrypt.genSaltSync(10);
       var hashedPassword = bcrypt.hashSync(password, salt);
-      if(password === "") hashedPassword = "";
+      if (password === "") hashedPassword = "";
       try {
         const user = await new User({ email, password: hashedPassword }).save();
         const token = createToken(user);
