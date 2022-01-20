@@ -13,18 +13,18 @@ const Header = () => {
   return (
     <div className="header">
       <div className="app-name">
-        <Link to="/">TO-DO APP</Link>
+        <Link to="/">EVENTS APP</Link>
       </div>
       <div className="menu-items">
         <ul>
           {data.currentUser ? (
             <>
-              <li>
+              {/* <li>
                 <Link to="/">Dashboard</Link>
               </li>
               <li>
                 <Link to="/account">Account</Link>
-              </li>
+              </li> */}
               <li>
                 <button
                   onClick={() => {

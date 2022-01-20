@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { TextField, Button } from "@mui/material";
-import CreateIcon from "@mui/icons-material/Create";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
@@ -19,7 +18,6 @@ const TodoManageForm = (props) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <h2>
-        <CreateIcon />
         {props.headerText ? props.headerText : "Create Event"}
       </h2>
       <form className="todo-manage-form">
@@ -33,7 +31,7 @@ const TodoManageForm = (props) => {
             value={title}
             size="small"
             fullWidth
-            variant="outlined"
+            variant="standard"
             onClick={props.resetError}
             onChange={(e) => {
               setTitle(e.target.value);
@@ -53,7 +51,7 @@ const TodoManageForm = (props) => {
             fullWidth
             multiline
             rows={5}
-            variant="outlined"
+            variant="standard"
             onChange={(e) => {
               setDescription(e.target.value);
             }}

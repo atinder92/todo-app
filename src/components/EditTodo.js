@@ -37,7 +37,7 @@ const EditTodo = () => {
   return (
     <div>
       <TodoManageForm
-        headerText={"Edit To-do"}
+        headerText={"Edit Event"}
         buttonText={"Save"}
         title={currentTodo.title}
         description={currentTodo.description}

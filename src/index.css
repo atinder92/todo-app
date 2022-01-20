@@ -90,7 +90,6 @@ body {
 }
 .todo-manage-form .form-control input{
   font-size: 14px;
-  padding: 10px;
 }
 .todo-manage-form button {
   border: none!important;
@@ -142,7 +141,7 @@ body {
   font-weight: bold;
   font-size: 12px;
   padding: 12px;
-  background-color: #e6e6e6;
+  background-color: #ccc;
   margin-right: 10px;
 }
 .todo-list-item-title {
@@ -177,11 +176,15 @@ CalendarView Component
 }
 .calendar-view {
   margin-top: 15px;
+  height: 500px;
+  border-radius: 5px;
 }
 .calendar-view .rbc-toolbar span.rbc-btn-group:last-child {
   display: none;
 }
-
+.rbc-event {
+  background-color: green!important;
+}
 /*
 Material Components style override
 */
