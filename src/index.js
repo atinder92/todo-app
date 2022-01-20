@@ -34,12 +34,10 @@ const client = new ApolloClient({
   link: concat(authMiddleware, httpLink),
 });
 ReactDOM.render(
-  <React.StrictMode>
     <ApolloProvider client={client}>
       <Router>
         <App />
       </Router>
-    </ApolloProvider>
-  </React.StrictMode>,
+    </ApolloProvider>,
   document.getElementById("root")
 );

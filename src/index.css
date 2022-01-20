@@ -110,6 +110,17 @@ body {
   margin: 0 auto;
   margin-top: 15px;
 }
+.create-event-container {
+  display: flex;
+  align-items: center;
+}
+.create-event-container h2{
+  display: inline-block;
+  margin-right: 5px;
+}
+.create-event-container svg:hover {
+  cursor: pointer;
+}
 /*
   -- TodoList COMPONENT
 */
@@ -157,8 +168,26 @@ body {
 }
 
 /*
+CalendarView Component
+*/
+.react-calendar {
+  width: inherit!important;
+  border: solid 1px rgba(0, 0, 0, 0.2)!important;
+  border-radius: 5px;
+}
+.calendar-view {
+  margin-top: 15px;
+}
+.calendar-view .rbc-toolbar span.rbc-btn-group:last-child {
+  display: none;
+}
+
+/*
 Material Components style override
 */
 h2.MuiDialogTitle-root{
   font-size: 16px;
+}
+.MuiPaper-root {
+  padding: 15px;
 }

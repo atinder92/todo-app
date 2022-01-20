@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Event as EventIcon } from "@mui/icons-material";
 import TodoListItem from "./TodoListItem";
 import { Alert, ToggleButtonGroup, ToggleButton } from "@mui/material";
+import CalendarView from "./CalendarView";
+
 const TodoList = (props) => {
   const [todoView, setTodoView] = useState("list");
-
   const selectViewHandler = (_, view) => {
     setTodoView(view);
   };
@@ -36,7 +37,7 @@ const TodoList = (props) => {
         </div>
       ) : (
         <div>
-          <h3>Calendar View</h3>
+          <CalendarView todos={props.todos}/>
         </div>
       )}
     </div>

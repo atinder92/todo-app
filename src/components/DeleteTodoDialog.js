@@ -19,7 +19,7 @@ const DeleteTodoDialog = (props) => {
     });
   };
   return (
-    <Dialog open={props.open} onClose={props.handleClose}>
+    <Dialog open={props.open} onClose={props.handleClose} maxWidth="sm" fullWidth={true} className="delete-event-dialog">
       <DialogTitle id="alert-dialog-title">
         {"Are you sure, you want to delete your to-do item ?"}
       </DialogTitle>

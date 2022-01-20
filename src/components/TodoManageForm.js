@@ -20,7 +20,7 @@ const TodoManageForm = (props) => {
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <h2>
         <CreateIcon />
-        {props.headerText ? props.headerText : "Create To-Do "}
+        {props.headerText ? props.headerText : "Create Event"}
       </h2>
       <form className="todo-manage-form">
         <div className="form-control">
