@@ -70,7 +70,7 @@ const TodoManageForm = (props) => {
           />
         </div>
         <Button variant="outlined" onClick={formSubmitHandler}>
-          {props.buttonText ? props.buttonText : "Create Todo"}
+          {props.buttonText ? props.buttonText : "Create Event"}
         </Button>
       </form>
     </LocalizationProvider>

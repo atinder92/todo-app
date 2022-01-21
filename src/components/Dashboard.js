@@ -5,7 +5,7 @@ import { useQuery, useMutation } from "@apollo/client";
 import { Dialog } from "@mui/material";
 import CREATE_TODO from "../mutations/CreateTodo";
 import TodoManageForm from "./TodoManageForm";
-import TodoList from "./TodoList";
+import CalendarView from "./CalendarView";
 
 const Dashboard = () => {
   const [createTodoError, setCreateTodoError] = useState({});
@@ -43,10 +43,10 @@ const Dashboard = () => {
   return (
     <div className="dashboard-container">
       <div className="create-event-container">
-        <h2>Create Event</h2>
+        <h3>Create Event</h3>
         <AddCircleIcon
-          color="action"
-          fontSize="large"
+          color="success"
+          fontSize="medium"
           onClick={() => setOpen(true)}
         />
       </div>
@@ -57,7 +57,7 @@ const Dashboard = () => {
           error={createTodoError}
         />
       </Dialog>
-      <TodoList todos={uData.currentUser.todos} />
+      <CalendarView todos={uData.currentUser.todos}/>
     </div>
   );
 };

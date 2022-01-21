@@ -11,9 +11,6 @@ body {
 */
 
 .header {
-  padding: 10px;
-  background: #c0392b;
-  color: white;
   font-size: 16px;
   display: flex;
   flex-direction: row;
@@ -22,10 +19,11 @@ body {
 .app-name {
   flex-grow: 1;
   font-weight: bold;
+  font-size: 24px;
 }
 .app-name a, .app-name button {
   text-decoration: none;
-  color: white;
+  color: black;
 }
 .menu-items {
   flex-grow: 2;
@@ -100,10 +98,7 @@ body {
 /*
   -- Dashboard COMPONENT
 */
-.dashboard-container {
-  width: 60%;
-  margin: 0 auto;
-}
+
 .invalid-login-error {
   width: 28%;
   margin: 0 auto;
@@ -184,6 +179,17 @@ CalendarView Component
 }
 .rbc-event {
   background-color: green!important;
+}
+.rbc-date-cell {
+  font-size: 14px;
+  color: #333;
+}
+.rbc-toolbar-label {
+  font-size: 20px;
+  font-weight: bold;
+}
+.rbc-today {
+  background-color: lavender!important;
 }
 /*
 Material Components style override

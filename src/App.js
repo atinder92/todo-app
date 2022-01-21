@@ -10,9 +10,9 @@ import EditTodo from "./components/EditTodo";
 
 function App() {
   return (
-    <Container maxWidth="false" disableGutters={true}>
-      <Header />
+    <Container maxWidth="md" disableGutters={true}>
       <Container>
+        <Header />
         <Switch>
           <Route path="/" exact component={requireAuth(Dashboard)} />
           <Route path="/login" component={Login} />
