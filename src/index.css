@@ -49,6 +49,9 @@ body {
 .menu-items ul li:hover {
   cursor: pointer;
 }
+.header .menu-items button {
+  cursor: pointer;
+}
 
 /*
   -- Main COMPONENT --
@@ -176,6 +179,12 @@ CalendarView Component
 }
 .calendar-view .rbc-toolbar span.rbc-btn-group:last-child {
   display: none;
+}
+.calendar-view-dialog-title {
+  font-weight: bold!important;
+}
+.calendar-view-dialog-content p{
+  font-size: 14px;
 }
 .rbc-event {
   background-color: green!important;
